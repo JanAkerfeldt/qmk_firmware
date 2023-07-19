@@ -15,10 +15,9 @@
  */
 
 #include QMK_KEYBOARD_H
+#include "os_detection.h"
 
 enum planck_layers { _QWERTY, _COLEMAK, _DVORAK, _LOWER, _RAISE, _FUNC, _ADJUST };
-
-// enum planck_keycodes { QWERTY = SAFE_RANGE, COLEMAK };
 
 #define LOWER    OSL(_LOWER)
 #define LOWER2   TG(_LOWER)
@@ -168,6 +167,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 /* clang-format on */
+
+void keyboard_post_init_user(void) {
+    switch (detected_host_os()) {
+    case OS_LINUX:
+	set_unicode_input_mode(UNICODE_MODE_LINUX);
+	break;
+    case OS_UNSURE:
+    case OS_WINDOWS:
+	set_unicode_input_mode(UNICODE_MODE_WINDOWS);
+	break;
+    case OS_MACOS:
+    case OS_IOS:
+    default:
+	set_unicode_input_mode(UNICODE_MODE_MACOS);
+	break;	
+    }
+}
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
