@@ -68,10 +68,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_planck_grid(
-    KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-    CTL_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_DOT,  KC_ENT,
-    KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    ARING,   AUML,    OUML,    KC_RSFT,
-    FUNC,     KC_LALT, KC_RALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+    KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    ARING,
+    CTL_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    OUML,    AUML,
+    KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_UP,   KC_ENT,
+    FUNC,     KC_LALT, KC_RALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_BSPC, KC_LEFT, KC_DOWN, KC_RGHT
 ),
 
 /* Colemak DH
@@ -86,10 +86,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_COLEMAK] = LAYOUT_planck_grid(
-    KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_DOT,  KC_BSPC,
-    CTL_ESC, KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_ENT,
-    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    ARING,   AUML,    OUML,    KC_RSFT,
-    FUNC,    KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+    KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    OUML,    ARING,
+    CTL_ESC, KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    AUML,
+    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_UP,   KC_ENT,
+    FUNC,    KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_BSPC, KC_LEFT, KC_DOWN, KC_RGHT
 ),
 
 /* Lower
@@ -106,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWER] = LAYOUT_planck_grid(
    KC_TILD,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,       KC_8,       KC_9,    KC_0,    KC_BSPC,
    _______,  XXXXXXX, XXXXXXX, KC_LPRN, KC_1,    KC_PEQL, KC_PMNS, KC_4,       KC_5,       KC_6,    KC_PAST, KC_PENT,
-   _______,  XXXXXXX, XXXXXXX, KC_RPRN, KC_0,    XXXXXXX, KC_PPLS, KC_1,       KC_2,       KC_3,    KC_PSLS, _______,
+   _______,  XXXXXXX, XXXXXXX, KC_RPRN, KC_0,    XXXXXXX, KC_PPLS, KC_1,       KC_2,       KC_3,    KC_PSLS, KC_PENT,
    _______,  _______, _______, _______, _______, KC_SPC,  KC_SPC,  _______,    KC_P0,      KC_PDOT, KC_COMM, XXXXXXX
 ),
 
@@ -122,9 +122,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = LAYOUT_planck_grid(
-    KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_UNDS, KC_PIPE, KC_BSLS, KC_DEL,
+    KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_UNDS, KC_PIPE, KC_BSLS, KC_BSPC,
     _______, KC_LT,   KC_LBRC, KC_LPRN, KC_LCBR, KC_EQL,  KC_MINS, KC_SCLN, KC_DQUO, KC_QUOT, KC_ASTR, KC_ENT,
-    _______, KC_GT,   KC_RBRC, KC_RPRN, KC_RCBR, KC_QUES, KC_PLUS, KC_COLN, KC_COMM, KC_DOT,  KC_SLSH, _______,
+    _______, KC_GT,   KC_RBRC, KC_RPRN, KC_RCBR, KC_QUES, KC_PLUS, KC_COLN, KC_COMM, KC_DOT,  KC_SLSH, KC_ENT,
     _______, _______, _______, _______, _______, _______, _______, KC_TRNS, KC_HOME, KC_PGDN, KC_PGUP, KC_END
 ),
 
@@ -132,7 +132,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |CtlTab|  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  | Ins  | Home | PgUp |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |GuiGrv|  F8  |  F9  | F10  | F11  |  F12 | F13  | F14  | F15  | F16  | Del  | End  | PgDn |
+ * |GuiGrv|  F9  | F10  | F11  |  F12 | F13  | F14  | F15  | F16  | Del  | End  | PgDn |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |Mute  | Vol- | Vol+ |GuiHme|PrntSc|ScrlLk| Paus |NumLck|      |  Up  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -140,10 +140,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_FUNC] = LAYOUT_planck_grid(
-    CTL_TAB, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_INS,  KC_HOME, KC_PGUP,
-    GUI_GRV, KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,  KC_F16,  KC_DEL,  KC_END,  KC_PGDN,
-    _______, KC_MUTE, KC_VOLD, KC_VOLU, GUI_HME, KC_PSCR, KC_SCRL, KC_PAUS, KC_NUM,  XXXXXXX, KC_UP,   _______,
-    _______, _______, _______, _______, LOWER2,  _______, _______, _______, XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT
+    CTL_TAB, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   XXXXXXX, KC_INS,  KC_DEL,
+    GUI_GRV, KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,  KC_F16,  XXXXXXX, XXXXXXX, XXXXXXX,
+    _______, KC_MUTE, KC_VOLD, KC_VOLU, GUI_HME, KC_PSCR, KC_SCRL, KC_PAUS, KC_NUM,  XXXXXXX, KC_PGUP, _______,
+    _______, _______, _______, _______, LOWER2,  _______, _______, _______, XXXXXXX, KC_HOME, KC_PGDN, KC_END
 ),
 
 /* Adjust (Lower + Raise)
@@ -210,11 +210,13 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
-const key_override_t dot_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_DOT, KC_COMM);
+const key_override_t dot_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_DOT, KC_COLN);
+const key_override_t comma_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_COMM, KC_SCLN);
 const key_override_t delete_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
 
 const key_override_t **key_overrides = (const key_override_t *[]) {
     &dot_key_override,
+    &comma_key_override,
     &delete_key_override,
     NULL
 };
