@@ -107,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    KC_TILD,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,       KC_8,       KC_9,    KC_0,    KC_BSPC,
    _______,  XXXXXXX, XXXXXXX, KC_LPRN, KC_1,    KC_PEQL, KC_PMNS, KC_4,       KC_5,       KC_6,    KC_PAST, KC_PENT,
    _______,  XXXXXXX, XXXXXXX, KC_RPRN, KC_0,    XXXXXXX, KC_PPLS, KC_1,       KC_2,       KC_3,    KC_PSLS, KC_PENT,
-   _______,  _______, _______, _______, _______, KC_SPC,  KC_SPC,  _______,    KC_P0,      KC_PDOT, KC_COMM, XXXXXXX
+   _______,  _______, _______, _______, _______, KC_SPC,  KC_ENT,  _______,    KC_P0,      KC_PDOT, KC_COMM, XXXXXXX
 ),
 
 /* Raise
@@ -125,7 +125,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_UNDS, KC_PIPE, KC_BSLS, KC_BSPC,
     _______, KC_LT,   KC_LBRC, KC_LPRN, KC_LCBR, KC_EQL,  KC_MINS, KC_SCLN, KC_DQUO, KC_QUOT, KC_ASTR, KC_ENT,
     _______, KC_GT,   KC_RBRC, KC_RPRN, KC_RCBR, KC_QUES, KC_PLUS, KC_COLN, KC_COMM, KC_DOT,  KC_SLSH, KC_ENT,
-    _______, _______, _______, _______, _______, _______, _______, KC_TRNS, KC_HOME, KC_PGDN, KC_PGUP, KC_END
+    _______, _______, _______, _______, _______, KC_BSPC, KC_SPC,  KC_TRNS, KC_HOME, KC_PGDN, KC_PGUP, KC_END
 ),
 
 /* Func layer
