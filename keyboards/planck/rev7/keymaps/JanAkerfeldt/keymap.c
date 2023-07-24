@@ -26,36 +26,11 @@ enum planck_layers { _QWERTY, _COLEMAK, _DVORAK, _LOWER, _RAISE, _FUNC, _ADJUST 
 #define QWERTY   TO(_QWERTY)
 #define COLEMAK  TO(_COLEMAK)
 
-
-/* 
-enum unicode_swedish_names {
-    _ARING,
-    _AUML,
-    _OUML,
-    _aRING,
-    _aUML,
-    _oUML
-};
-
-const uint32_t unicode_map[] PROGMEM = {
-    [_ARING] = 0x00c5,
-    [_AUML] = 0x00c4,
-    [_OUML] = 0x00D6,
-    [_aRING] = 0x00e5,
-    [_aUML] = 0x00e4,
-    [_oUML] = 0x00f6
-};
-
-#define ARING XP(_aRING, _ARING)
-#define AUML  XP(_aUML, _AUML)
-#define OUML  XP(_oUML, _OUML)
-
-*/
-
 enum swedish_keycodes {
     ARING = SAFE_RANGE,
     AUML,
-    OUML
+    OUML,
+    ANY
 };
 
 #define CTL_ESC LCTL_T(KC_ESC)
@@ -153,7 +128,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     CTL_TAB, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   XXXXXXX, KC_INS,  KC_DEL,
     GUI_GRV, KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,  KC_F16,  XXXXXXX, XXXXXXX, XXXXXXX,
     _______, KC_MUTE, KC_VOLD, KC_VOLU, GUI_HME, KC_PSCR, KC_SCRL, KC_PAUS, KC_NUM,  XXXXXXX, KC_PGUP, _______,
-    _______, _______, _______, _______, LOWER2,  _______, _______, _______, XXXXXXX, KC_HOME, KC_PGDN, KC_END
+    _______, _______, _______, _______, LOWER2,  _______, _______, _______, ANY,     KC_HOME, KC_PGDN, KC_END
 ),
 
 /* Adjust (Lower + Raise)
@@ -178,24 +153,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 /* clang-format on */
 
-/*
 void keyboard_post_init_user(void) {
-    switch (detected_host_os()) {
-    case OS_LINUX:
-	set_unicode_input_mode(UNICODE_MODE_LINUX);
-	break;
-    case OS_UNSURE:
-    case OS_WINDOWS:
-	set_unicode_input_mode(UNICODE_MODE_WINDOWS);
-	break;
-    case OS_MACOS:
-    case OS_IOS:
-    default:
-	set_unicode_input_mode(UNICODE_MODE_MACOS);
-	break;	
-    }
+    rgblight_setrgb (0x00,  0xFF, 0xFF);
 }
-*/
+     
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
@@ -223,52 +184,50 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!record->event.pressed) {
+	return true;
+    }
+    
     switch(keycode) {
     case ARING:
-	if (record->event.pressed) {
-	    if (detected_host_os() == OS_WINDOWS) {
-		tap_code16(RALT(KC_W));
-	    }
-	    else {
-		tap_code16(RALT(KC_A));
-	    }
+	if (detected_host_os() == OS_WINDOWS) {
+	    tap_code16(RALT(KC_W));
+	}
+	else {
+	    tap_code16(RALT(KC_A));
 	}
 	return false;
     case AUML:
-	if (record->event.pressed) {
-	    if (detected_host_os() == OS_WINDOWS) {
-		tap_code16(RALT(KC_Q));
+	if (detected_host_os() == OS_WINDOWS) {
+	    tap_code16(RALT(KC_Q));
+	}
+	else {
+	    if (get_mods() & MOD_MASK_SHIFT) {
+		del_mods(MOD_MASK_SHIFT);
+		tap_code16(RALT(KC_U));
+		set_mods(MOD_MASK_SHIFT);
+		tap_code16(KC_A);
 	    }
 	    else {
-		if (get_mods() & MOD_MASK_SHIFT) {
-		    del_mods(MOD_MASK_SHIFT);
-		    tap_code16(RALT(KC_U));
-		    set_mods(MOD_MASK_SHIFT);
-		    tap_code16(KC_A);
-		}
-		else {
-		    tap_code16(RALT(KC_U));
-		    tap_code16(KC_A);		    
-		}
+		tap_code16(RALT(KC_U));
+		tap_code16(KC_A);		    
 	    }
 	}
 	return false;
     case OUML:
-	if (record->event.pressed) {
-	    if (detected_host_os() == OS_WINDOWS) {
-		tap_code16(RALT(KC_P));
+	if (detected_host_os() == OS_WINDOWS) {
+	    tap_code16(RALT(KC_P));
+	}
+	else {
+	    if (get_mods() & MOD_MASK_SHIFT) {
+		del_mods(MOD_MASK_SHIFT);
+		tap_code16(RALT(KC_U));
+		set_mods(MOD_MASK_SHIFT);
+		tap_code16(KC_O);
 	    }
 	    else {
-		if (get_mods() & MOD_MASK_SHIFT) {
-		    del_mods(MOD_MASK_SHIFT);
-		    tap_code16(RALT(KC_U));
-		    set_mods(MOD_MASK_SHIFT);
-		    tap_code16(KC_O);
-		}
-		else {
-		    tap_code16(RALT(KC_U));
-		    tap_code16(KC_O);		    
-		}
+		tap_code16(RALT(KC_U));
+		tap_code16(KC_O);		    
 	    }
 	}
 	return false;
@@ -276,19 +235,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case KC_TILD:
     case KC_QUOT:
     case KC_DQUO:
-	if (record->event.pressed && detected_host_os() == OS_WINDOWS) {
+	if (detected_host_os() == OS_WINDOWS) {
 	    tap_code16(keycode);
 	    tap_code16(KC_SPC);
 	    return false;
 	}
     case KC_6:
-	if (record->event.pressed
-	    && detected_host_os() == OS_WINDOWS
-	    && get_mods() & MOD_MASK_SHIFT) {
+	if (detected_host_os() == OS_WINDOWS && get_mods() & MOD_MASK_SHIFT) {
 	    tap_code16(keycode);
 	    tap_code16(KC_SPC);
 	    return false;
 	}
+    case ANY:
+	tap_random_base64();
+	return false;
     }
 
     return true;
