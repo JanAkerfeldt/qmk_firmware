@@ -26,6 +26,8 @@ enum planck_layers { _QWERTY, _COLEMAK, _DVORAK, _LOWER, _RAISE, _FUNC, _ADJUST 
 #define QWERTY   TO(_QWERTY)
 #define COLEMAK  TO(_COLEMAK)
 
+
+/* 
 enum unicode_swedish_names {
     _ARING,
     _AUML,
@@ -47,6 +49,14 @@ const uint32_t unicode_map[] PROGMEM = {
 #define ARING XP(_aRING, _ARING)
 #define AUML  XP(_aUML, _AUML)
 #define OUML  XP(_oUML, _OUML)
+
+*/
+
+enum swedish_keycodes {
+    ARING = SAFE_RANGE,
+    AUML,
+    OUML
+};
 
 #define CTL_ESC LCTL_T(KC_ESC)
 #define CTL_TAB LCTL(KC_TAB)
@@ -168,6 +178,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 /* clang-format on */
 
+/*
 void keyboard_post_init_user(void) {
     switch (detected_host_os()) {
     case OS_LINUX:
@@ -184,6 +195,7 @@ void keyboard_post_init_user(void) {
 	break;	
     }
 }
+*/
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
@@ -208,6 +220,78 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     }
 
     return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch(keycode) {
+    case ARING:
+	if (record->event.pressed) {
+	    if (detected_host_os() == OS_WINDOWS) {
+		tap_code16(RALT(KC_W));
+	    }
+	    else {
+		tap_code16(RALT(KC_A));
+	    }
+	}
+	return false;
+    case AUML:
+	if (record->event.pressed) {
+	    if (detected_host_os() == OS_WINDOWS) {
+		tap_code16(RALT(KC_Q));
+	    }
+	    else {
+		if (get_mods() & MOD_MASK_SHIFT) {
+		    del_mods(MOD_MASK_SHIFT);
+		    tap_code16(RALT(KC_U));
+		    set_mods(MOD_MASK_SHIFT);
+		    tap_code16(KC_A);
+		}
+		else {
+		    tap_code16(RALT(KC_U));
+		    tap_code16(KC_A);		    
+		}
+	    }
+	}
+	return false;
+    case OUML:
+	if (record->event.pressed) {
+	    if (detected_host_os() == OS_WINDOWS) {
+		tap_code16(RALT(KC_P));
+	    }
+	    else {
+		if (get_mods() & MOD_MASK_SHIFT) {
+		    del_mods(MOD_MASK_SHIFT);
+		    tap_code16(RALT(KC_U));
+		    set_mods(MOD_MASK_SHIFT);
+		    tap_code16(KC_O);
+		}
+		else {
+		    tap_code16(RALT(KC_U));
+		    tap_code16(KC_O);		    
+		}
+	    }
+	}
+	return false;
+    case KC_GRV:
+    case KC_TILD:
+    case KC_QUOT:
+    case KC_DQUO:
+	if (record->event.pressed && detected_host_os() == OS_WINDOWS) {
+	    tap_code16(keycode);
+	    tap_code16(KC_SPC);
+	    return false;
+	}
+    case KC_6:
+	if (record->event.pressed
+	    && detected_host_os() == OS_WINDOWS
+	    && get_mods() & MOD_MASK_SHIFT) {
+	    tap_code16(keycode);
+	    tap_code16(KC_SPC);
+	    return false;
+	}
+    }
+
+    return true;
 }
 
 const key_override_t dot_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_DOT, KC_COLN);
