@@ -154,29 +154,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* clang-format on */
 
 void keyboard_post_init_user(void) {
-    rgblight_setrgb (0x00,  0xFF, 0xFF);
+    rgblight_setrgb (0x00, 0xFF, 0xFF);
 }
      
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
     case _COLEMAK:
-        rgblight_setrgb (0xFF,  0xFF, 0x00);
+        rgblight_setrgb (0xFF, 0xFF, 0x00);
         break;
     case _RAISE:
-        rgblight_setrgb (0xFF,  0x00, 0x00);
+        rgblight_setrgb (0xFF, 0x00, 0x00);
         break;
     case _LOWER:
-        rgblight_setrgb (0x00,  0xFF, 0x00);
+        rgblight_setrgb (0x00, 0xFF, 0x00);
         break;
     case _FUNC:
-        rgblight_setrgb (0x00,  0x00, 0xFF);
+        rgblight_setrgb (0x00, 0x00, 0xFF);
         break;
     case _ADJUST:
-        rgblight_setrgb (0x7A,  0x00, 0xFF);
+        rgblight_setrgb (0x7A, 0x00, 0xFF);
         break;
     default: //  for any other layers, or the default layer
-        rgblight_setrgb (0x00,  0xFF, 0xFF);
+        rgblight_setrgb (0x00, 0xFF, 0xFF);
         break;
     }
 
@@ -202,10 +202,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	    tap_code16(RALT(KC_Q));
 	}
 	else {
-	    if (get_mods() & MOD_MASK_SHIFT) {
-		del_mods(MOD_MASK_SHIFT);
+	    if (get_mods() & MOD_BIT_LSHIFT) {
+		del_mods(MOD_BIT_LSHIFT);
 		tap_code16(RALT(KC_U));
-		set_mods(MOD_MASK_SHIFT);
+		set_mods(MOD_BIT_LSHIFT);
 		tap_code16(KC_A);
 	    }
 	    else {
@@ -219,10 +219,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	    tap_code16(RALT(KC_P));
 	}
 	else {
-	    if (get_mods() & MOD_MASK_SHIFT) {
-		del_mods(MOD_MASK_SHIFT);
+	    if (get_mods() & MOD_BIT_LSHIFT) {
+		del_mods(MOD_BIT_LSHIFT);
 		tap_code16(RALT(KC_U));
-		set_mods(MOD_MASK_SHIFT);
+		set_mods(MOD_BIT_LSHIFT);
 		tap_code16(KC_O);
 	    }
 	    else {
@@ -240,12 +240,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	    tap_code16(KC_SPC);
 	    return false;
 	}
+	break;
     case KC_6:
 	if (detected_host_os() == OS_WINDOWS && get_mods() & MOD_MASK_SHIFT) {
 	    tap_code16(keycode);
 	    tap_code16(KC_SPC);
 	    return false;
 	}
+	break;
     case ANY:
 	tap_random_base64();
 	return false;
