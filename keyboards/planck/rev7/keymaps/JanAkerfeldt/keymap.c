@@ -43,13 +43,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
  * ,-----------------------------------------------------------------------------------.
- * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
+ * | TAB  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  |  Å   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |EscCtl|   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   .  |Enter |
+ * |EscCtl|   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   Ö  |  Ä   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   Å  |   Ä  |   Ö  |Shift |
+ * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |  ,;  |  .:  |  Up  | Ret  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Func | LAlt | RAlt | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
+ * | Func | LAlt | RAlt | GUI  |Lower |    Space    |Raise | Bksp | Left | Down | Right|
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_planck_grid(
@@ -83,16 +83,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |  (   |   1  |  =   |  -   |   4  |   5  |   6  |   *  |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |  )   |   0  |      |  +   |   1  |   2  |   3  |   /  |      |
+ * |      |      |      |  )   |   0  |  ?   |  +   |   1  |   2  |   3  |   /  |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |    Space    |      |   0  |   .  |  ,   |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = LAYOUT_planck_grid(
    KC_TILD,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,       KC_8,       KC_9,    KC_0,    KC_BSPC,
-   _______,  XXXXXXX, XXXXXXX, KC_LPRN, KC_1,    KC_PEQL, KC_PMNS, KC_4,       KC_5,       KC_6,    KC_PAST, KC_PENT,
-   _______,  XXXXXXX, XXXXXXX, KC_RPRN, KC_0,    XXXXXXX, KC_PPLS, KC_1,       KC_2,       KC_3,    KC_PSLS, KC_PENT,
-   _______,  _______, _______, _______, _______, KC_SPC,  KC_ENT,  _______,    KC_P0,      KC_PDOT, KC_COMM, XXXXXXX
+   _______,  XXXXXXX, XXXXXXX, KC_LPRN, KC_1,    KC_EQL,  KC_MINS, KC_4,       KC_5,       KC_6,    KC_ASTR, KC_PENT,
+   _______,  XXXXXXX, XXXXXXX, KC_RPRN, KC_0,    KC_QUES, KC_PLUS, KC_1,       KC_2,       KC_3,    KC_SLSH, KC_PENT,
+   _______,  _______, _______, _______, _______, KC_SPC,  KC_ENT,  _______,    KC_0,       KC_DOT,  KC_COMM, XXXXXXX
 ),
 
 /* Raise
@@ -110,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_UNDS, KC_PIPE, KC_BSLS, KC_BSPC,
     _______, KC_LT,   KC_LBRC, KC_LPRN, KC_LCBR, KC_EQL,  KC_MINS, KC_SCLN, KC_DQUO, KC_QUOT, KC_ASTR, KC_ENT,
     _______, KC_GT,   KC_RBRC, KC_RPRN, KC_RCBR, KC_QUES, KC_PLUS, KC_COLN, KC_COMM, KC_DOT,  KC_SLSH, KC_ENT,
-    _______, _______, _______, _______, _______, KC_BSPC, KC_SPC,  KC_TRNS, KC_HOME, KC_PGDN, KC_PGUP, KC_END
+    _______, _______, _______, _______, _______, KC_BSPC, KC_SPC,  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 ),
 
 /* Func layer
@@ -157,7 +157,6 @@ void keyboard_post_init_user(void) {
     rgblight_setrgb (0x00, 0xFF, 0xFF);
 }
      
-
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
     case _COLEMAK:
