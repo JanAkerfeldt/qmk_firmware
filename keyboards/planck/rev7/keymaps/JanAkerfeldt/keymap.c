@@ -19,9 +19,8 @@
 
 enum planck_layers { _COLEMAK, _QWERTY, _DVORAK, _LOWER, _RAISE, _FUNC, _ADJUST };
 
-#define LOWER    OSL(_LOWER)
-#define LOWER2   TG(_LOWER)
-#define RAISE    OSL(_RAISE)
+#define LOWER    MO(_LOWER)
+#define RAISE    MO(_RAISE)
 #define FUNC     MO(_FUNC)
 #define QWERTY   TO(_QWERTY)
 #define COLEMAK  TO(_COLEMAK)
@@ -55,26 +54,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     FUNC,    CTL_ESC, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_ENT,  KC_RALT, RCT_ESC, ANY),
 
 [_LOWER] = LAYOUT_planck_grid(
-   _______,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
-   _______,  XXXXXXX, XXXXXXX, KC_LPRN, KC_1,    KC_EQL,  KC_MINS, KC_4,    KC_5,    KC_6,    KC_ASTR, KC_PENT,
-   _______,  XXXXXXX, XXXXXXX, KC_RPRN, KC_0,    KC_QUES, KC_PLUS, KC_1,    KC_2,    KC_3,    KC_SLSH, KC_PENT,
-   _______,  _______, _______, _______, _______, _______, _______, ADJUST,  KC_0,    KC_DOT,  KC_COMM, XXXXXXX),
+   _______,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    XXXXXXX,
+   _______,  XXXXXXX, XXXXXXX, KC_LPRN, XXXXXXX, XXXXXXX, XXXXXXX, KC_4,    KC_5,    KC_6,    KC_ASTR, KC_PLUS,
+   _______,  XXXXXXX, XXXXXXX, KC_RPRN, XXXXXXX, XXXXXXX, XXXXXXX, KC_1,    KC_2,    KC_3,    KC_SLSH, KC_MINS,
+   _______,  _______, _______, _______, _______, _______, _______, ADJUST,  KC_PENT, KC_DOT,  _______, _______),
 
 [_RAISE] = LAYOUT_planck_grid(
-    _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_UNDS, KC_PIPE, KC_BSLS, KC_BSPC,
-    _______, KC_LT,   KC_LBRC, KC_LPRN, KC_LCBR, KC_EQL,  KC_MINS, KC_SCLN, KC_DQUO, KC_QUOT, KC_ASTR, KC_ENT,
-    _______, KC_GT,   KC_RBRC, KC_RPRN, KC_RCBR, KC_QUES, KC_PLUS, KC_COLN, KC_GRV,  KC_TILD, KC_SLSH, KC_ENT,
-    _______, _______, _______, _______, ADJUST,  _______, _______,  _______, _______, _______, _______, _______),
+    KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_UNDS, KC_PIPE, KC_BSLS, KC_TILD,
+    _______, KC_LT,   KC_LBRC, KC_LPRN, KC_LCBR, XXXXXXX, XXXXXXX, KC_DQUO, KC_EQL,  XXXXXXX, KC_ASTR, KC_PLUS,
+    _______, KC_GT,   KC_RBRC, KC_RPRN, KC_RCBR, XXXXXXX, XXXXXXX, KC_QUOT, XXXXXXX, XXXXXXX, KC_SLSH, KC_MINS,
+    _______, _______, _______, _______, ADJUST,  _______, _______, _______, _______, _______, _______, _______),
     
 [_FUNC] = LAYOUT_planck_grid(
-    GUI_GRV, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_PSCR, KC_SCRL, KC_PAUS, KC_INS,  KC_DEL,
-    _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_LEFT, KC_UP,   KC_DOWN, KC_RGHT, XXXXXXX,
-    _______, KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX, KC_NUM,  KC_HOME, KC_PGUP, KC_PGDN, KC_END,  XXXXXXX,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
-  
+    GUI_GRV, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   XXXXXXX, XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU,
+    KC_DEL,  KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_LEFT, KC_UP,   KC_DOWN, KC_RGHT, XXXXXXX,
+    _______, KC_PSCR, KC_SCRL, KC_PAUS, KC_NUM,  KC_INS,  XXXXXXX, KC_HOME, KC_PGUP, KC_PGDN, KC_END,  XXXXXXX,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_DOWN, KC_RGHT),
+
 [_ADJUST] = LAYOUT_planck_grid(
     _______, QK_BOOT, DB_TOGG, RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, _______,
-    _______, EE_CLR,  MU_NEXT, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  COLEMAK, _______, LOWER2,  _______,
+    _______, EE_CLR,  MU_NEXT, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  COLEMAK, _______, _______, _______,
     _______, AU_PREV, AU_NEXT, MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  CK_TOGG, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______)
 };
@@ -186,10 +185,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 const key_override_t dot_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_DOT, KC_COLN);
 const key_override_t comma_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_COMM, KC_SCLN);
 const key_override_t delete_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
+const key_override_t down_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_DOWN, KC_UP);
+const key_override_t right_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_RGHT, KC_LEFT);
 
 const key_override_t **key_overrides = (const key_override_t *[]) {
     &dot_key_override,
     &comma_key_override,
     &delete_key_override,
+    &down_key_override,
+    &right_key_override,
     NULL
 };
