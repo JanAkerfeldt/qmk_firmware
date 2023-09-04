@@ -53,17 +53,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     FUNC,    CTL_ESC, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_ENT,  KC_RALT, KC_DOWN, KC_RGHT),
 
 [_LOWER] = LAYOUT_planck_grid(
-   _______,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    XXXXXXX,
-   _______,  XXXXXXX, XXXXXXX, KC_LPRN, XXXXXXX, XXXXXXX, XXXXXXX, KC_4,    KC_5,    KC_6,    KC_ASTR, KC_PLUS,
-   _______,  XXXXXXX, XXXXXXX, KC_RPRN, XXXXXXX, XXXXXXX, XXXXXXX, KC_1,    KC_2,    KC_3,    KC_SLSH, KC_MINS,
+   _______,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_EQL,
+   _______,  XXXXXXX, XXXXXXX, KC_LPRN, XXXXXXX, KC_ASTR, KC_MINS, KC_4,    KC_5,    KC_6,    KC_ASTR, KC_PLUS,
+   _______,  XXXXXXX, XXXXXXX, KC_RPRN, XXXXXXX, KC_SLSH, KC_PLUS, KC_1,    KC_2,    KC_3,    KC_SLSH, KC_MINS,
    _______,  _______, _______, _______, _______, _______, _______, ADJUST,  KC_PENT, KC_DOT,  _______, _______),
 
 [_RAISE] = LAYOUT_planck_grid(
-    KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_UNDS, KC_PIPE, KC_BSLS, KC_TILD,
-    _______, KC_LT,   KC_LBRC, KC_LPRN, KC_LCBR, XXXXXXX, XXXXXXX, KC_DQUO, KC_EQL,  XXXXXXX, KC_ASTR, KC_PLUS,
-    _______, KC_GT,   KC_RBRC, KC_RPRN, KC_RCBR, XXXXXXX, XXXXXXX, KC_QUOT, XXXXXXX, XXXXXXX, KC_SLSH, KC_MINS,
+    KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_UNDS, KC_BSLS, KC_PIPE, KC_TILD,
+    _______, KC_LT,   KC_LBRC, KC_LPRN, KC_LCBR, KC_ASTR, KC_MINS, KC_DQUO, KC_EQL,  XXXXXXX, KC_ASTR, KC_PLUS,
+    _______, KC_GT,   KC_RBRC, KC_RPRN, KC_RCBR, KC_SLSH, KC_PLUS, KC_QUOT, KC_EXLM, XXXXXXX, KC_SLSH, KC_MINS,
     _______, _______, _______, _______, ADJUST,  _______, _______, _______, _______, _______, _______, _______),
-    
+
 [_FUNC] = LAYOUT_planck_grid(
     GUI_GRV, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   XXXXXXX, XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU,
     KC_DEL,  KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_LEFT, KC_UP,   KC_DOWN, KC_RGHT, XXXXXXX,
@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 void keyboard_post_init_user(void) {
     rgblight_setrgb(0x00, 0xFF, 0xFF);
 }
-     
+
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
     case _QWERTY:
@@ -112,7 +112,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!record->event.pressed) {
 	return true;
     }
-    
+
     switch(keycode) {
     case ARING:
 	if (detected_host_os() == OS_WINDOWS) {
@@ -135,7 +135,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	    }
 	    else {
 		tap_code16(RALT(KC_U));
-		tap_code16(KC_A);		    
+		tap_code16(KC_A);
 	    }
 	}
 	return false;
@@ -152,7 +152,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	    }
 	    else {
 		tap_code16(RALT(KC_U));
-		tap_code16(KC_O);		    
+		tap_code16(KC_O);
 	    }
 	}
 	return false;
