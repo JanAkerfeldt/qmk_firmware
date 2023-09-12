@@ -34,6 +34,7 @@ enum swedish_keycodes {
 };
 
 #define CTL_ESC LCTL_T(KC_ESC)
+#define CTL_BSP LCTL_T(KC_BSPC)
 #define GUI_GRV LGUI(KC_GRV)
 
 /* clang-format off */
@@ -42,25 +43,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_COLEMAK] = LAYOUT_planck_grid(
     KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    OUML,    ARING,
-    KC_BSPC, KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    AUML,
+    CTL_BSP, KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    AUML,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
     FUNC,    CTL_ESC, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_ENT,  KC_RALT, KC_DOWN, KC_RGHT),
 
 [_QWERTY] = LAYOUT_planck_grid(
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    ARING,
-    KC_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    OUML,    AUML,
+    CTL_BSP, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    OUML,    AUML,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
     FUNC,    CTL_ESC, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_ENT,  KC_RALT, KC_DOWN, KC_RGHT),
 
 [_LOWER] = LAYOUT_planck_grid(
    _______,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_EQL,
-   _______,  XXXXXXX, XXXXXXX, KC_LPRN, XXXXXXX, KC_ASTR, KC_MINS, KC_4,    KC_5,    KC_6,    KC_ASTR, KC_PLUS,
+   KC_BSPC,  XXXXXXX, XXXXXXX, KC_LPRN, XXXXXXX, KC_ASTR, KC_MINS, KC_4,    KC_5,    KC_6,    KC_ASTR, KC_PLUS,
    _______,  XXXXXXX, XXXXXXX, KC_RPRN, XXXXXXX, KC_SLSH, KC_PLUS, KC_1,    KC_2,    KC_3,    KC_SLSH, KC_MINS,
    _______,  _______, _______, _______, _______, _______, _______, ADJUST,  KC_PENT, KC_DOT,  _______, _______),
 
 [_RAISE] = LAYOUT_planck_grid(
     KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_UNDS, KC_BSLS, KC_PIPE, KC_TILD,
-    _______, KC_LT,   KC_LBRC, KC_LPRN, KC_LCBR, KC_ASTR, KC_MINS, KC_DQUO, KC_EQL,  XXXXXXX, KC_ASTR, KC_PLUS,
+    KC_BSPC, KC_LT,   KC_LBRC, KC_LPRN, KC_LCBR, KC_ASTR, KC_MINS, KC_DQUO, KC_EQL,  XXXXXXX, KC_ASTR, KC_PLUS,
     _______, KC_GT,   KC_RBRC, KC_RPRN, KC_RCBR, KC_SLSH, KC_PLUS, KC_QUOT, KC_EXLM, XXXXXXX, KC_SLSH, KC_MINS,
     _______, _______, _______, _______, ADJUST,  _______, _______, _______, _______, _______, _______, _______),
 
