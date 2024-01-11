@@ -1,4 +1,4 @@
-/* Copyright 2015-2023 Jack Humbert
+ /* Copyright 2015-2023 Jack Humbert
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,10 +17,10 @@
 #include QMK_KEYBOARD_H
 #include "os_detection.h"
 
-enum planck_layers { _COLEMAK, _QWERTY, _DVORAK, _LOWER, _RAISE, _FUNC, _ADJUST };
+enum planck_layers { _QWERTY, _COLEMAK, _DVORAK, _LOWER, _RAISE, _FUNC, _ADJUST };
 
-#define LOWER    MO(_LOWER)
-#define RAISE    MO(_RAISE)
+#define LOWER    LT(_LOWER, KC_SPC)
+#define RAISE    LT(_RAISE, KC_SPC)
 #define FUNC     MO(_FUNC)
 #define QWERTY   TO(_QWERTY)
 #define COLEMAK  TO(_COLEMAK)
@@ -41,34 +41,34 @@ enum swedish_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-[_COLEMAK] = LAYOUT_planck_grid(
-    KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    OUML,    ARING,
-    CTL_BSP, KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    AUML,
-    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
-    FUNC,    CTL_ESC, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_ENT,  KC_RALT, KC_DOWN, KC_RGHT),
-
 [_QWERTY] = LAYOUT_planck_grid(
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    ARING,
     CTL_BSP, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    OUML,    AUML,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
     FUNC,    CTL_ESC, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_ENT,  KC_RALT, KC_DOWN, KC_RGHT),
 
+[_COLEMAK] = LAYOUT_planck_grid(
+    KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    OUML,    ARING,
+    CTL_BSP, KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    AUML,
+    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
+    FUNC,    CTL_ESC, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_ENT,  KC_RALT, KC_DOWN, KC_RGHT),
+
 [_LOWER] = LAYOUT_planck_grid(
-   _______,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_EQL,
-   _______,  XXXXXXX, XXXXXXX, KC_LPRN, XXXXXXX, KC_ASTR, KC_MINS, KC_4,    KC_5,    KC_6,    KC_ASTR, KC_PLUS,
-   _______,  XXXXXXX, XXXXXXX, KC_RPRN, XXXXXXX, KC_SLSH, KC_PLUS, KC_1,    KC_2,    KC_3,    KC_SLSH, KC_MINS,
-   _______,  _______, _______, _______, _______, _______, _______, ADJUST,  KC_PENT, KC_DOT,  _______, _______),
+   KC_TILD,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
+   _______,  KC_LT,   KC_LBRC, KC_LPRN, KC_LCBR, KC_PERC, KC_AT,   KC_DQUO, KC_EQL,  KC_EXLM, KC_ASTR, KC_PLUS,
+   _______,  KC_GT,   KC_RBRC, KC_RPRN, KC_RCBR, KC_DLR,  KC_CIRC, KC_QUOT, KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
+   _______,  _______, _______, _______, _______, _______, _______, ADJUST,  _______, _______, _______, _______),
 
 [_RAISE] = LAYOUT_planck_grid(
-    KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_UNDS, KC_BSLS, KC_PIPE, KC_TILD,
-    _______, KC_LT,   KC_LBRC, KC_LPRN, KC_LCBR, KC_ASTR, KC_MINS, KC_DQUO, KC_EQL,  XXXXXXX, KC_ASTR, KC_PLUS,
-    _______, KC_GT,   KC_RBRC, KC_RPRN, KC_RCBR, KC_SLSH, KC_PLUS, KC_QUOT, KC_EXLM, XXXXXXX, KC_SLSH, KC_MINS,
+    KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_PIPE,
+    _______, KC_LT,   KC_LBRC, KC_LPRN, KC_LCBR, KC_PERC, KC_HASH, KC_DQUO, KC_EQL,  KC_EXLM, KC_ASTR, KC_PLUS,
+    _______, KC_GT,   KC_RBRC, KC_RPRN, KC_RCBR, KC_DLR,  KC_AMPR, KC_QUOT, KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
     _______, _______, _______, _______, ADJUST,  _______, _______, _______, _______, _______, _______, _______),
 
 [_FUNC] = LAYOUT_planck_grid(
     GUI_GRV, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   XXXXXXX, XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU,
-    KC_DEL,  KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_LEFT, KC_UP,   KC_DOWN, KC_RGHT, XXXXXXX,
-    _______, KC_PSCR, KC_SCRL, KC_PAUS, KC_NUM,  KC_INS,  XXXXXXX, KC_HOME, KC_PGUP, KC_PGDN, KC_END,  XXXXXXX,
+    KC_DEL,  KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_LEFT, KC_UP,   KC_DOWN, KC_RGHT, KC_PGUP,
+    _______, KC_PSCR, KC_SCRL, KC_PAUS, KC_NUM,  KC_INS,  XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_END,  KC_PGDN,
     _______, _______, _______, _______, _______, _______, _______, _______, ANY,     _______, KC_UP,   KC_LEFT),
 
 [_ADJUST] = LAYOUT_planck_grid(
@@ -129,14 +129,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	}
 	else {
 	    if (get_mods() & MOD_BIT_LSHIFT) {
-		del_mods(MOD_BIT_LSHIFT);
-		tap_code16(RALT(KC_U));
-		set_mods(MOD_BIT_LSHIFT);
-		tap_code16(KC_A);
+            del_mods(MOD_BIT_LSHIFT);
+            tap_code16(RALT(KC_U));
+            set_mods(MOD_BIT_LSHIFT);
+            tap_code16(KC_A);
 	    }
 	    else {
-		tap_code16(RALT(KC_U));
-		tap_code16(KC_A);
+            tap_code16(RALT(KC_U));
+            tap_code16(KC_A);
 	    }
 	}
 	return false;
