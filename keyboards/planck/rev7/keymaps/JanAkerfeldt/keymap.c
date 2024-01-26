@@ -19,8 +19,8 @@
 
 enum planck_layers { _QWERTY, _COLEMAK, _DVORAK, _LOWER, _RAISE, _FUNC, _ADJUST };
 
-#define LOWER    LT(_LOWER, KC_SPC)
-#define RAISE    LT(_RAISE, KC_SPC)
+#define LOWER    MO(_LOWER)
+#define RAISE    MO(_RAISE)
 #define FUNC     MO(_FUNC)
 #define QWERTY   TO(_QWERTY)
 #define COLEMAK  TO(_COLEMAK)
@@ -67,8 +67,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_FUNC] = LAYOUT_planck_grid(
     GUI_GRV, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   XXXXXXX, XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU,
-    KC_DEL,  KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_LEFT, KC_UP,   KC_DOWN, KC_RGHT, KC_PGUP,
-    _______, KC_PSCR, KC_SCRL, KC_PAUS, KC_NUM,  KC_INS,  XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_END,  KC_PGDN,
+    KC_DEL,  KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_PGUP,
+    _______, KC_PSCR, KC_SCRL, KC_PAUS, KC_NUM,  KC_INS,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_END,  KC_PGDN,
     _______, _______, _______, _______, _______, _______, _______, _______, ANY,     _______, KC_UP,   KC_LEFT),
 
 [_ADJUST] = LAYOUT_planck_grid(
