@@ -185,10 +185,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 const key_override_t dot_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_DOT, KC_COLN);
 const key_override_t comma_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_COMM, KC_SCLN);
 const key_override_t delete_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
+const key_override_t alt_down_key_override = ko_make_basic(MOD_BIT(KC_RALT), KC_DOWN, KC_UP);
+const key_override_t alt_right_key_override = ko_make_basic(MOD_BIT(KC_RALT), KC_RIGHT, KC_LEFT);
 
 const key_override_t **key_overrides = (const key_override_t *[]) {
     &dot_key_override,
     &comma_key_override,
     &delete_key_override,
+    &alt_down_key_override,
+    &alt_right_key_override,
     NULL
 };
